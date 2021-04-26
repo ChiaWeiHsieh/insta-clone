@@ -2,9 +2,9 @@ import { useEffect, useState, useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import * as ROUTES from '../constants/routes';
 import { doesUsernameExist } from '../services/firebase';
-
-
 import FirebaseContext from '../context/firebase';
+
+
 export default function SignUp() {
     const history = useHistory();
     const { firebase } = useContext(FirebaseContext);
@@ -16,14 +16,15 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
 
     const [error, setError] = useState('');
-
-
     const isInvalid = password === '' || email === '' || username === '' || fullname === '';
+
+
     const handleSignUp = async (event) => {
         event.preventDefault();
+        
         const usernameExists = await doesUsernameExist(username);
-        console.log('username:', usernameExists)
-        if (usernameExists.length != 0) {
+        
+        if (!usernameExists.length) {
             try {
                 const createUserResult = await firebase
                     .auth()
@@ -50,14 +51,7 @@ export default function SignUp() {
                 setError(error.message);
             }
         }
-        // try {
-        //     await firebase.auth().signInWithEmailAndPassword(email, password);
-        //     history.push(ROUTES.DASHBOARD);
-        // } catch (error) {
-        //     setEmail('');
-        //     setPassword('');
-        //     setError(error.message);
-        // }
+
     };
 
     useEffect(() => {
@@ -75,6 +69,7 @@ export default function SignUp() {
                         <h1 className="flex justify-center w-full">
                             <img src="/images/logo.png" alt="Instagram" className="mt-2 w-6/12 mb-4" />
                         </h1>
+
                         {error && <p className="mb-4 text-xs text-red-primary">{error}</p>}
 
                         <form onSubmit={handleSignUp} method="POST">
