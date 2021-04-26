@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import TimeLine from '../components/TimeLine';
-import SideBar from '../components/SideBar';
+import SideBar from '../components/Sidebar';
 
 
 export default function Dashboard() {

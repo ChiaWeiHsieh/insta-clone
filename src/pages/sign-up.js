@@ -10,13 +10,13 @@ export default function SignUp() {
     const { firebase } = useContext(FirebaseContext);
 
     const [username, setUsername] = useState('');
-    const [fullname, setFullname] = useState('');
+    const [fullName, setFullName] = useState('');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [error, setError] = useState('');
-    const isInvalid = password === '' || email === '' || username === '' || fullname === '';
+    const isInvalid = password === '' || email === '' || username === '' || fullName === '';
 
 
     const handleSignUp = async (event) => {
@@ -37,7 +37,7 @@ export default function SignUp() {
                 await firebase.firestore().collection('users').add({
                     userId: createUserResult.user.uid,
                     username: username.toLowerCase(),
-                    fullname,
+                    fullName,
                     email: email.toLowerCase(),
                     following: [],
                     dateCreated: Date.now()
@@ -88,9 +88,9 @@ export default function SignUp() {
                                 type="text"
                                 placeholder="請輸入全名..."
                                 onChange={({ target }) => {
-                                    setFullname(target.value);
+                                    setFullName(target.value);
                                 }}
-                                value={fullname}
+                                value={fullName}
                             />
                             <input className="text-sm text-gray-base w-full mr-3 py-5 px-4 h-2 border border-gray-primary rounded mb-2"
                                 aria-label="輸入電子信箱"

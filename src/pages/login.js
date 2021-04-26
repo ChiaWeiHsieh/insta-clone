@@ -9,7 +9,7 @@ export default function Login() {
     const { firebase } = useContext(FirebaseContext);
 
     const [username, setUsername] = useState('');
-    const [fullname, setFullname] = useState('');
+    const [fullName, setFullName] = useState('');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
